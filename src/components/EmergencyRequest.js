@@ -7,7 +7,6 @@ const EmergencyRequest = ({ user, onLogout }) => {
   const navigate = useNavigate();
   const [step, setStep] = useState('location'); // location, requesting, waiting, matched
   const [location, setLocation] = useState('');
-  const [isLoading, setIsLoading] = useState(false);
   const [matchedTransporter, setMatchedTransporter] = useState(null);
   const [requestTime, setRequestTime] = useState(null);
 
@@ -16,12 +15,11 @@ const EmergencyRequest = ({ user, onLogout }) => {
     if (!location.trim()) return;
 
     setStep('requesting');
-    setIsLoading(true);
     setRequestTime(new Date());
 
     try {
       // Send emergency request to backend
-      const response = await axios.post('http://localhost:5000/request-help', {
+      await axios.post('http://localhost:5000/request-help', {
         patientId: user.id,
         name: user.email?.split('@')[0] || 'Patient',
         location: location,
@@ -42,12 +40,10 @@ const EmergencyRequest = ({ user, onLogout }) => {
           rating: 4.8
         });
         setStep('matched');
-        setIsLoading(false);
       }, 3000);
 
     } catch (error) {
       console.error('Error sending emergency request:', error);
-      setIsLoading(false);
     }
   };
 

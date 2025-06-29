@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { FaUser, FaCar, FaIdCard, FaPhone, FaMapMarkerAlt, FaArrowLeft } from 'react-icons/fa';
+import { FaUser, FaCar, FaPhone, FaArrowLeft } from 'react-icons/fa';
 import axios from 'axios';
 
 const TransporterRegistration = ({ user, onLogout }) => {
@@ -38,7 +38,7 @@ const TransporterRegistration = ({ user, onLogout }) => {
         registrationDate: new Date().toISOString()
       };
 
-      const response = await axios.post('http://localhost:5000/register', registrationData);
+      await axios.post('http://localhost:5000/register', registrationData);
       
       // Simulate processing time
       setTimeout(() => {

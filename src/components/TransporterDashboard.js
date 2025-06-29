@@ -1,10 +1,8 @@
 import React, { useState, useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
 import { FaCar, FaToggleOn, FaToggleOff, FaSignOutAlt, FaBell, FaMapMarkerAlt, FaClock, FaPhone } from 'react-icons/fa';
 import axios from 'axios';
 
 const TransporterDashboard = ({ user, onLogout }) => {
-  const navigate = useNavigate();
   const [isOnline, setIsOnline] = useState(false);
   const [emergencyRequests, setEmergencyRequests] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
